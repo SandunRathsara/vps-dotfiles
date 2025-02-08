@@ -22,5 +22,4 @@ _darcs
 ^/README.*
 ^/LICENSE.*
 ^/COPYING
-
-./setup.sh
+^/setup.sh
