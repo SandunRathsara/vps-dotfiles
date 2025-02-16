@@ -3,7 +3,7 @@
 # Install apt packages
 apt_install() {
   sudo apt update && sudo apt upgrade -y
-  sudo apt install build-essential stow zsh unzip tmux
+  sudo apt install build-essential stow zsh unzip tmux neofetch btop
 }
 
 # Inspall yazi packages
