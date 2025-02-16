@@ -2,6 +2,7 @@
 
 # Install apt packages
 apt_install() {
+  sudo apt update && sudo apt upgrade -y
   sudo apt install build-essential stow zsh unzip tmux
 }
 
@@ -25,10 +26,14 @@ install_yazi() {
 
 # Install lazygit
 install_lazygit() {
+  cd ~/downloads
+
   LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-  curl -Lo ~/downloads/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-  tar xf ~/downloads/lazygit.tar.gz ~/downloads/lazygit
-  sudo install ~/downloads/lazygit -D -t /usr/local/bin/
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit -D -t /usr/local/bin/
+
+  cd -
 }
 
 # Special function to setup tpm for tmux

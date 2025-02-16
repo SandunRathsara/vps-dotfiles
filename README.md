@@ -17,6 +17,19 @@ sudo vim /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
 PasswordAuthentication no
 
+### 3. /etc/pam.d/chsh
+```sh
+sudo vim /etc/pam.d/chsh
+```
+Replace following line,
+```
+auth      required      pam_shells.so
+```
+With Following,
+```
+auth     sufficient      pam_shells.so
+```
+
 ## Run setup script
 
 ### 1. Clone the repo
