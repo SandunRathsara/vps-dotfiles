@@ -7,17 +7,18 @@ Change the bellow values in the respective files
 ```sh
 sudo vim /etc/ssh/sshd_config
 ```
-PasswordAuthentication no
-PermitRootLogin no
-UsePAM no
+- PasswordAuthentication no
+- PermitRootLogin no
+- UsePAM no
 
 ### 2. sshd_config.d/50-cloud-init.conf
 ```sh
 sudo vim /etc/ssh/sshd_config.d/50-cloud-init.conf
 ```
-PasswordAuthentication no
+- PasswordAuthentication no
 
-### 3. /etc/pam.d/chsh
+## Enable chsh to run without password
+
 ```sh
 sudo vim /etc/pam.d/chsh
 ```
@@ -30,22 +31,16 @@ With Following,
 auth     sufficient      pam_shells.so
 ```
 
-## Run setup script
+## Setup the server
+### Steps
+- 1. Clone the repo
+- 2. cd into .dotfiles directory
+- 3. Give execution permission to the setup file
+- 4. Run the setup file
 
-### 1. Clone the repo
 ```sh
 git clone https://SandunRathsara@github.com/SandunRathsara/vps-dotfiles.git ~/.dotfiles
-```
-
-### 2. CD into dotfiles directory
-```sh
 cd ~/.dotfiles
-```
-### 3. Give execution permission to the setup file
-```sh
 sudo chmod +x ./setup.sh
-```
-### 4. Run the setup file
-```sh
 ./setup.sh
 ```
