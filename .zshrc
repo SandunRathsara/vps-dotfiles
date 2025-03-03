@@ -22,6 +22,8 @@ export EDITOR=nvim
 
 # Open lazygit tool
 alias lg='lazygit'
+# Open lazydocker tool
+alias ld='lazydocker'
 # nvim to vim
 alias vim='nvim'
 # Show ls -la

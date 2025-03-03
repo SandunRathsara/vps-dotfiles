@@ -36,6 +36,31 @@ install_lazygit() {
   cd -
 }
 
+# Install lazydocker
+install_lazydocker() {
+  cd ~/downloads
+
+  # map different architecture variations to the available binaries
+  ARCH=$(uname -m)
+  case $ARCH in
+  i386 | i686) ARCH=x86 ;;
+  armv6*) ARCH=armv6 ;;
+  armv7*) ARCH=armv7 ;;
+  aarch64*) ARCH=arm64 ;;
+  esac
+
+  # prepare the download URL
+  GITHUB_LATEST_VERSION=$(curl -L -s -H 'Accept: application/json' https://github.com/jesseduffield/lazydocker/releases/latest | sed -e 's/.*"tag_name":"\([^"]*\)".*/\1/')
+  GITHUB_FILE="lazydocker_${GITHUB_LATEST_VERSION//v/}_$(uname -s)_${ARCH}.tar.gz"
+  GITHUB_URL="https://github.com/jesseduffield/lazydocker/releases/download/${GITHUB_LATEST_VERSION}/${GITHUB_FILE}"
+
+  curl -Lo lazydocker.tar.gz $GITHUB_URL
+  tar xf lazydocker.tar.gz
+  sudo install lazydocker -D -t /usr/local/bin/
+
+  cd -
+}
+
 # Special function to setup tpm for tmux
 setup_tpm() {
   # clone the tpm repo
@@ -64,6 +89,9 @@ main() {
 
   # Install lazygit
   install_lazygit
+
+  # Install lazydocker
+  install_lazydocker
 
   # Setup tmux
   setup_tpm
