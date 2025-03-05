@@ -10,6 +10,7 @@ apt_install() {
 snap_install() {
   sudo snap install --classic bash-language-server
   sudo snap install --classic nvim
+  sudo snap install aws-cli --classic
 }
 
 # Manual setup of powerlevel10k shell
